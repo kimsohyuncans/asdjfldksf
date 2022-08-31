@@ -10,7 +10,7 @@ import (
 
 func main() {
 	e := echo.New()
-	client := microgen.NewClient("1dbc2a74-60c6-4f64-92bc-b311a26164df", microgen.DefaultURL())
+	client := microgen.NewClient("91b22a79-4800-44f0-8d6c-61b8f7627c23", microgen.DefaultURL())
 
 	e.GET("", func(c echo.Context) error {
 		return c.String(http.StatusOK, "hello world")
