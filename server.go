@@ -25,7 +25,7 @@ func main() {
 	})
 
 	products := e.Group("/products")
-	products.GET("", func(c echo.Context) error {
+	products.GET("/", func(c echo.Context) error {
 		resp, err := client.Service("products").Find()
 		if err != nil {
 			return c.JSON(http.StatusNonAuthoritativeInfo, err)
