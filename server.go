@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"net/http"
+	"log"
 
 	"github.com/labstack/echo/v4"
 	microgen "github.com/mejik-dev/microgen-v3-go"
@@ -11,6 +12,13 @@ import (
 func main() {
 	e := echo.New()
 	client := microgen.NewClient("91b22a79-4800-44f0-8d6c-61b8f7627c23", microgen.DefaultURL())
+	
+	e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(ctx echo.Context) error {
+			log.Println("url", ctx.Request().URL.String())
+			return next(ctx)
+		}
+	})
 
 	e.GET("", func(c echo.Context) error {
 		return c.String(http.StatusOK, "hello world")
